@@ -362,3 +362,43 @@ JOIN PlayerTrophy pt
 JOIN Trophy t
 	ON pt.trophy = t.name
 ORDER BY p.username;
+
+DROP FUNCTION IF EXISTS GetTrophyScore;
+DELIMITER $$
+CREATE FUNCTION GetTrophyScore (player VARCHAR(30))
+RETURNS BIGINT
+BEGIN
+	DECLARE trophyScore BIGINT DEFAULT 0;
+    DECLARE numBronze BIGINT DEFAULT 0;
+    DECLARE numSilver BIGINT DEFAULT 0;
+    DECLARE numGold BIGINT DEFAULT 0;
+    DECLARE numPlat BIGINT DEFAULT 0;
+    
+    SELECT COUNT(p.value)
+    INTO numBronze
+	FROM PlayerTrophyValue p
+    WHERE p.Player = player
+		AND p.value = 'bronze';
+	
+    SELECT COUNT(p.value)
+    INTO numSilver
+	FROM PlayerTrophyValue p
+    WHERE p.Player = player
+		AND p.value = 'silver';
+	
+    SELECT COUNT(p.value)
+    INTO numGold
+	FROM PlayerTrophyValue p
+    WHERE p.Player = player
+		AND p.value = 'gold';
+    
+    SELECT COUNT(p.value)
+    INTO numPlat
+	FROM PlayerTrophyValue p
+    WHERE p.Player = player
+		AND p.value = 'platinum';
+    
+    SET trophyScore = numBronze*15 + numSilver*30 + numGold*90 + numPlat*180;
+    RETURN trophyScore;
+END$$
+DELIMITER ;

@@ -3,6 +3,7 @@ const consoleRouter = require('./console');
 const gameRouter = require('./game');
 const trophyRouter = require('./trophy');
 const playerConsoleRouter = require('./playerconsole');
+const trophyScoreRouter = require('./trophyscore');
 const defaultRouter = require('koa-router')({
     prefix: '/api'
 });
@@ -17,7 +18,8 @@ defaultRouter.use(
     consoleRouter.routes(),
     gameRouter.routes(),
     trophyRouter.routes(),
-    playerConsoleRouter.routes()
+    playerConsoleRouter.routes(),
+    trophyScoreRouter.routes()
 );
 
 module.exports = api => {
