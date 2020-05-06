@@ -62,7 +62,9 @@ CREATE TABLE Trophy
     value ENUM('bronze', 'silver', 'gold', 'platinum'),
     PRIMARY KEY(game, name),
     FOREIGN KEY fk_trophy_game(game)
-		REFERENCES Game(title)
+	REFERENCES Game(title)
+	ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 INSERT INTO 
@@ -175,9 +177,13 @@ CREATE TABLE PlayerConsole
     isPrimary BOOL,
     PRIMARY KEY(player, console),
     FOREIGN KEY fk_playerConsole_player(player)
-		REFERENCES Player(id),
+	REFERENCES Player(id)
+	ON UPDATE CASCADE
+        ON DELETE CASCADE,
 	FOREIGN KEY fk_playerConsole_console(console)
-		REFERENCES Console(id)
+	REFERENCES Console(id)
+	ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 INSERT INTO 

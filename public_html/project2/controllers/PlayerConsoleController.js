@@ -33,7 +33,7 @@ class PlayerConsoleController {
     async playerConsole(ctx) {
         console.log('Controller HIT: PlayerConsoleController::playerConsole');
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM PlayerConsole WHERE player = ? AND console = ?;';
+            const query = 'SELECT * FROM PlayerConsole WHERE console = ?;';
             const pc = ctx.params.playerConsole;
             
             chpConnection.query({

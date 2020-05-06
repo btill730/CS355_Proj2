@@ -33,7 +33,7 @@ class TrophyController {
     async trophy(ctx) {
         console.log('Controller HIT: TrophyController::trophy');
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM Trophy WHERE game = ? AND name = ?;';
+            const query = 'SELECT * FROM Trophy WHERE game = ?;';
             const t = ctx.params.trophy;
             
             chpConnection.query({
