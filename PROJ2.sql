@@ -128,9 +128,13 @@ CREATE TABLE ConsoleGame
     game VARCHAR(30),
     PRIMARY KEY(console, game),
     FOREIGN KEY fk_consoleGame_console(console)
-		REFERENCES Console(id),
+		REFERENCES Console(id)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE,
     FOREIGN KEY fk_consoleGame_game(game)
 		REFERENCES Game(title)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE
 );
 
 INSERT INTO 
@@ -157,6 +161,8 @@ CREATE TABLE PlayerEmails
     PRIMARY KEY(player, email),
     FOREIGN KEY fk_playerEmail_player(player)
 		REFERENCES Player(id)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE
 );
 
 INSERT INTO 
@@ -201,9 +207,13 @@ CREATE TABLE PlayerGame
     game VARCHAR(30),
     PRIMARY KEY(player, game),
     FOREIGN KEY fk_playerGame_player(player)
-		REFERENCES Player(id),
+		REFERENCES Player(id)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE,
 	FOREIGN KEY fk_playerGame_game(game)
 		REFERENCES Game(title)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE
 );
 
 INSERT INTO 
@@ -234,9 +244,13 @@ CREATE TABLE PlayerTrophy
     dateEarned DATE,
     PRIMARY KEY(player, game, trophy),
     FOREIGN KEY fk_playerTrophy_player(player)
-		REFERENCES Player(id),
+		REFERENCES Player(id)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE,
 	FOREIGN KEY fk_playerTrophy_trophy(game, trophy)
 		REFERENCES Trophy(game, name)
+		ON UPDATE CASCADE
+        	ON DELETE CASCADE
 );
 
 INSERT INTO 

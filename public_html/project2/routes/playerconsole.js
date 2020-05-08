@@ -6,7 +6,7 @@ const playerconsoleRouter = require('koa-router')({
 playerconsoleRouter.get('/', playerConsoleController.playerConsoles);
 playerconsoleRouter.get('/:playerConsole', playerConsoleController.playerConsole);
 playerconsoleRouter.post('/', playerConsoleController.addPlayerConsole, playerConsoleController.playerConsoles);
-playerconsoleRouter.put('/:playerConsole', playerConsoleController.updatePlayerConsole, playerConsoleController.playerConsole);
-playerconsoleRouter.delete('/:playerConsole', playerConsoleController.deletePlayerConsole, playerConsoleController.playerConsoles);
+playerconsoleRouter.put('/:player/:console', playerConsoleController.updatePlayerConsole, playerConsoleController.playerConsole);
+playerconsoleRouter.delete('/:player/:console', playerConsoleController.deletePlayerConsole, playerConsoleController.playerConsoles);
 
 module.exports = playerconsoleRouter;

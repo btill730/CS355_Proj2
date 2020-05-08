@@ -29,7 +29,7 @@ class PlayerConsoleController {
         });
     }
 
-    // Fetches a single PlayerConsole
+    // Fetches players for a single console
     async playerConsole(ctx) {
         console.log('Controller HIT: PlayerConsoleController::playerConsole');
         return new Promise((resolve, reject) => {
@@ -96,7 +96,7 @@ class PlayerConsoleController {
                     SET isPrimary = ?
                     WHERE player = ? AND console = ?
                     `,
-                values: [pc.isPrimary, ctx.params.playerConsole]
+                values: [pc.isPrimary, ctx.params.player, ctx.params.console]
             }, (err, res) => {
                 if(err) {
                     reject(err);
@@ -121,7 +121,7 @@ class PlayerConsoleController {
         return new Promise((resolve, reject) => {
             chpConnection.query({
                 sql: `DELETE FROM PlayerConsole WHERE player = ? AND console = ?;`,
-                values: [ctx.params.playerConsole]
+                values: [ctx.params.player, ctx.params.console]
             }, (err, res) => {
                 if(err) {
                     reject(err);

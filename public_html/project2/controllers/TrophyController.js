@@ -29,7 +29,7 @@ class TrophyController {
         });
     }
 
-    // Fetches a single Trophy
+    // Fetches Trophies for a single game
     async trophy(ctx) {
         console.log('Controller HIT: TrophyController::trophy');
         return new Promise((resolve, reject) => {
@@ -96,7 +96,7 @@ class TrophyController {
                     SET value = ?
                     WHERE game = ? AND name = ?
                     `,
-                values: [t.value, ctx.params.trophy]
+                values: [t.value, ctx.params.game, ctx.params.name]
             }, (err, res) => {
                 if(err) {
                     reject(err);
@@ -121,7 +121,7 @@ class TrophyController {
         return new Promise((resolve, reject) => {
             chpConnection.query({
                 sql: `DELETE FROM Trophy WHERE game = ? AND name = ?;`,
-                values: [ctx.params.trophy]
+                values: [ctx.params.game, ctx.params.name]
             }, (err, res) => {
                 if(err) {
                     reject(err);
